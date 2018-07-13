@@ -46,7 +46,7 @@ var headers = {
 var dataString = '{"jsonrpc": "1.0", "id":"curltest", "method": "getblockchaininfo", "params": [] }';
 
 var options = {
-    url: 'http://127.0.0.1:51472/',
+    url: 'http://127.0.0.1:51473/',
     method: 'POST',
     headers: headers,
     body: dataString,
