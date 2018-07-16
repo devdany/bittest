@@ -22,15 +22,12 @@ var service = {
                     })
                 }))
             }).then(async hashes => {
-                return await Promise.all(hashes.map(async hash => {
-                    return await call('getblock', hash).then(async result => {
-                        console.log(JSON.parse(result).result);
-                        return await JSON.parse(result).result;
+                await Promise.all(hashes.map(async hash => {
+                    await call('getblock', hash).then(async result => {
+                        console.log(result);
+                        console.log('--------');
                     })
                 }))
-            }).then(results => {
-                console.log('==============')
-                console.log(results)
             })
         })
     }
