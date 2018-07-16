@@ -25,10 +25,10 @@ var service = {
                 return await Promise.all(hashes.map(hash => {
                     call('getblock', hash).then(blockinfo => {
                         console.log(blockinfo);
+                    }).catch(err => {
+                        console.log(err);
                     })
                 }))
-            }).catch(err => {
-                reject(err);
             })
         })
     }
