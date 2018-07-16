@@ -16,14 +16,16 @@ var service = {
 
                 return blockInfoIterator;
             }).then(async iterator => {
-                await Promise.all(iterator.map(async val => {
+                return await Promise.all(iterator.map(async val => {
                     return await call('getblockhash',val).then(async result => {
                         return await JSON.parse(result).result;
                     })
                 })).then(val => {
-                    console.log(val)
+
                     return val;
                 })
+            }).then(async hashes => {
+                console.log(hashes);
             })
         })
     }
