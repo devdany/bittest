@@ -17,6 +17,8 @@ var call = (method, param) => {
             dataString = '{"jsonrpc": "1.0", "id":"curltest", "method": "'+method+'", "params": [] }';
         }
 
+        console.log(dataString);
+
         var options = {
             url: 'http://127.0.0.1:51473/',
             method: 'POST',
