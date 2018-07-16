@@ -55,7 +55,7 @@ var call = (method, param) => {
                 return reject(err);
             }
 
-            return resolve(body);
+            return resolve(body.result);
         })
     })
 
