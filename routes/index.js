@@ -12,7 +12,12 @@ router.get('/:method', (req, res) => {
 
 router.get('/:method/:params', (req, res) => {
     const method = req.params.method;
-    const params = req.params.params;
+    let params = req.params.params;
+
+    if(isNaN(params)){
+        params = '"'+params+'"'
+    }
+
     call(method, params).then(result => {
         res.send(result);
     })
