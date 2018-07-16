@@ -9,6 +9,8 @@ var service = {
             }).then(count => {
                 const offset = count -9;
                 const blockInfos = []
+                console.log(offset);
+                console.log(count);
                 for(let i = offset; i<=count; i++){
                     call('getblockhash',i).then(result => {
                         const hash = JSON.parse(result).result;
