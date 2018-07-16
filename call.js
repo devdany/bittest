@@ -1,31 +1,9 @@
 const request = require('request');
 
-const methodList = {
-    getblockchaininfo: {
-        isParam: false
-    },
-    getblockcount: {
-        isParam: false
-    },
-    getblockhash: {
-        isParam: true
-    },
-    getblock: {
-        isParam: true
-    }
-}
-
 var call = (method, param) => {
 
     return new Promise((resolve, reject) => {
 
-        if(!methodList[method]){
-            return reject('It is a not method supported');
-        }
-
-        if(methodList[method].isParam && !param){
-            return reject('The method need parameter')
-        }
 
         var headers = {
             'content-type': 'text/plain;'
