@@ -22,11 +22,13 @@ var service = {
                     })
                 }))
             }).then(async hashes => {
-                await Promise.all(hashes.map(async hash => {
-                    await call('getblock', hash).then(blockinfo => {
+                return await Promise.all(hashes.map(hash => {
+                    call('getblock', hash).then(blockinfo => {
                         console.log(blockinfo);
                     })
                 }))
+            }).catch(err => {
+                reject(err);
             })
         })
     }
