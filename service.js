@@ -6,24 +6,25 @@ var service = {
         return new Promise((resolve, reject) => {
             call('getblockcount').then(result => {
                 return JSON.parse(result).result;
-            }).then(count => {
+            }).then(async count => {
                 const offset = count -9;
                 const blockInfos = []
                 console.log(offset);
                 console.log(count);
+
                 for(let i = offset; i<=count; i++){
-                    call('getblockhash',i).then(result => {
+                    await call('getblockhash',i).then(async result => {
                         const hash = JSON.parse(result).result;
-                        call('getblock', hash).then(result => {
+                        await call('getblock', hash).then(async result => {
                             const blockInfo = JSON.parse(result).result;
-                            blockInfos.push(blockInfo)
+                            await blockInfos.push(blockInfo)
                         })
                     })
                 }
 
                 console.log(blockInfos);
 
-                return resolve(blockInfos);
+                return await resolve(blockInfos);
             }).catch(err => {
                 return reject(err);
             })
