@@ -2,7 +2,6 @@ var call = require('./call');
 
 var service = {
     getLatestBlock: () => {
-
         return new Promise((resolve, reject) => {
             call('getblockcount').then(result => {
                 return JSON.parse(result).result;
