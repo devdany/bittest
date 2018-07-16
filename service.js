@@ -26,7 +26,7 @@ var service = {
             }).then(async hashes => {
                 return await Promise.all(hashes.map(async hash => {
                     return await call('getblock', '"'+hash+'"').then(async blockinfo => {
-                        return await JSON.parse(result).result
+                        return await JSON.parse(blockinfo).result
                     }).catch(err => {
                         console.log(err);
                     })
@@ -42,12 +42,3 @@ var service = {
 
 module.exports = service;
 
-/*
-
-await call('getblockhash',i).then(async result => {
-    const hash = JSON.parse(result).result;
-    await call('getblock', hash).then(async result => {
-        const blockInfo = JSON.parse(result).result;
-        await blockInfos.push(blockInfo)
-    })
-})*/
