@@ -23,10 +23,7 @@ var service = {
                 }))
             }).then(async hashes => {
                 await Promise.all(hashes.map(async hash => {
-                    await call('getblock', hash).then(async result => {
-                        console.log(result);
-                        console.log('--------');
-                    })
+                    console.log(hash);
                 }))
             })
         })
