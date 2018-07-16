@@ -31,7 +31,7 @@ var call = (method, param) => {
             'content-type': 'text/plain;'
         };
 
-        var dataString = '{"jsonrpc": "1.0", "id":"curltest", "method": "'+method+'", "params": [] }';
+        var dataString = '{"jsonrpc": "1.0", "id":"curltest", "method": "'+method+'", "params": ["'+param+'"] }';
 
         var options = {
             url: 'http://127.0.0.1:51473/',
