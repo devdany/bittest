@@ -8,28 +8,35 @@ var service = {
                 return JSON.parse(result).result;
             }).then(async count => {
                 const offset = count -9;
-                const blockInfos = []
-                console.log(offset);
-                console.log(count);
+                const blockInfoIterator = []
 
                 for(let i = offset; i<=count; i++){
-                    await call('getblockhash',i).then(async result => {
-                        const hash = JSON.parse(result).result;
-                        await call('getblock', hash).then(async result => {
-                            const blockInfo = JSON.parse(result).result;
-                            await blockInfos.push(blockInfo)
-                        })
-                    })
+                    blockInfoIterator.push(i)
                 }
 
-                console.log(blockInfos);
-
-                return await resolve(blockInfos);
-            }).catch(err => {
-                return reject(err);
+                return blockInfoIterator;
+            }).then(async iterator => {
+                await Promise.all(iterator.map(async val => {
+                    return await call('getblockhash',val).then(async result => {
+                        return await JSON.parse(result).result;
+                    })
+                })).then(val => {
+                    console.log(val)
+                    return val;
+                })
             })
         })
     }
 }
 
 module.exports = service;
+
+/*
+
+await call('getblockhash',i).then(async result => {
+    const hash = JSON.parse(result).result;
+    await call('getblock', hash).then(async result => {
+        const blockInfo = JSON.parse(result).result;
+        await blockInfos.push(blockInfo)
+    })
+})*/
