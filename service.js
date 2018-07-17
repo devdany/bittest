@@ -73,6 +73,17 @@ var service = {
             })
         })
     },
+    getBlockCount: () => {
+        return new Promise((resolve, reject) => {
+            call('getblockcount').then(async count => {
+                return await JSON.parse(count).result
+            }).then(result => {
+                return resolve(result);
+            }).catch(err => {
+                return reject(err);
+            })
+        })
+    }
 
 }
 

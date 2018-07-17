@@ -22,5 +22,11 @@ router.get('/getBlock/:hash', (req, res) => {
     })
 })
 
+router.get('/getBlockCount', (req, res) => {
+    service.getBlockCount().then(result => {
+        return res.json(result);
+    })
+})
+
 
 module.exports = router;
