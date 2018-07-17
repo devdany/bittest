@@ -72,7 +72,8 @@ var service = {
                 return reject(err);
             })
         })
-    }
+    },
+
 }
 
 module.exports = service;
