@@ -1,7 +1,5 @@
 var call = require('./call');
 
-const idxPerPage = 10;
-
 var service = {
     getLatestBlock: () => {
         return new Promise((resolve, reject) => {
@@ -26,14 +24,14 @@ var service = {
             })
         })
     },
-    getBlocksByPage: (page) => {
+    getBlocksByPage: (page, count) => {
         return new Promise((resolve, reject) => {
             call('getblockcount').then(result => {
                 return JSON.parse(result).result
             }).then(async count => {
-                count = count - (page - 1) * idxPerPage;
+                count = count - (page - 1) * count;
 
-                const offset = count - (idxPerPage - 1);
+                const offset = count - (count - 1);
                 const blockInfoIterator = []
 
                 for (let i = offset; i <= count; i++) {

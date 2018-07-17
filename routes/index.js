@@ -10,8 +10,8 @@ router.get('/getLatestBlock', (req, res) => {
     })
 })
 
-router.get('/getBlocks/:p', (req, res) => {
-    service.getBlocksByPage(req.params.p).then(result => {
+router.get('/getBlocks/:p/:count', (req, res) => {
+    service.getBlocksByPage(req.params.p, req.params.count).then(result => {
         res.send(result.reverse());
     })
 })
