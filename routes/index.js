@@ -10,9 +10,15 @@ router.get('/getLatestBlock', (req, res) => {
     })
 })
 
-router.get('/getBlock/:p', (req, res) => {
-    service.getBlock(req.params.p).then(result => {
+router.get('/getBlocks/:p', (req, res) => {
+    service.getBlocksByPage(req.params.p).then(result => {
         res.send(result.reverse());
+    })
+})
+
+router.get('/getBlock/:hash', (req, res) => {
+    service.getBlock(req.params.hash).then(result => {
+        res.send(result);
     })
 })
 
