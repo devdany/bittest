@@ -24,14 +24,14 @@ var service = {
             })
         })
     },
-    getBlocksByPage: (page, count) => {
+    getBlocksByPage: (page, pageCount) => {
         return new Promise((resolve, reject) => {
             call('getblockcount').then(result => {
                 return JSON.parse(result).result
             }).then(async count => {
-                count = count - (page - 1) * count;
+                count = count - (page - 1) * pageCount;
 
-                const offset = count - (count - 1);
+                const offset = count - (pageCount - 1);
                 const blockInfoIterator = []
 
                 for (let i = offset; i <= count; i++) {
