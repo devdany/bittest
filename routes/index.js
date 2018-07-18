@@ -28,5 +28,13 @@ router.get('/getBlockCount', (req, res) => {
     })
 })
 
+router.get('/getTxInfo/:txid', (req, res) => {
+    service.getRawTransaction(req.params.txid)
+        .then(result => service.decodeRawTransaction(result))
+        .then(result => {
+            return res.json(result);
+        })
+})
+
 
 module.exports = router;

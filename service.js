@@ -83,6 +83,28 @@ var service = {
                 return reject(err);
             })
         })
+    },
+    getRawTransaction: (txid) => {
+        return new Promise((resolve,reject) => {
+            call('getrawtransaction', '"' + txid + '"').then(async rawtransaction => {
+                return await JSON.parse(rawtransaction).result
+            }).then(result => {
+                return resolve(result);
+            }).catch(err => {
+                return reject(err);
+            })
+        })
+    },
+    decodeRawTransaction: (rawTransaction) => {
+        return new Promise((resolve, reject) => {
+            call('decoderawtransaction', '"' + rawTransaction + '"').then(async transaction => {
+                return await JSON.parse(transaction).result
+            }).then(result => {
+                return resolve(result);
+            }).catch(err => {
+                return reject(err);
+            })
+        })
     }
 
 }
