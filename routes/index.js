@@ -36,5 +36,20 @@ router.get('/getTxInfo/:txid', (req, res) => {
         })
 })
 
+router.post('/createAccount', (req, res) => {
+    let account =  '';
+
+    if(req.body.account){
+        account = req.body.account;;
+    }
+
+    service.createAccount(account)
+        .then(result => {
+            return res.json(result);
+        }).catch(err => {
+            return 'error';
+    })
+})
+
 
 module.exports = router;

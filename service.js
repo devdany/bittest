@@ -98,11 +98,20 @@ var service = {
     decodeRawTransaction: (rawTransaction) => {
         return new Promise((resolve, reject) => {
             call('decoderawtransaction', '"' + rawTransaction + '"').then(async transaction => {
-                return await JSON.parse(transaction).result
+                return await JSON.parse(transaction).result;
             }).then(result => {
                 return resolve(result);
             }).catch(err => {
                 return reject(err);
+            })
+        })
+    },
+    createAccount: (account) => {
+        return new Promise((resolve, reject) => {
+            call('getnewaddress', '"'+account+'"').then(async result => {
+                return await JSON.parse(result).result;
+            }).then(result => {
+                return resolve(result);
             })
         })
     }
